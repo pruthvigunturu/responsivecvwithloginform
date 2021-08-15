@@ -86,7 +86,7 @@
 		}
 		function logIn(){
 				if(!(localStorage.getItem(myUserName) === null) && localStorage.getItem(myUserName) == myPassword ){
-				window.open("file://E:/coding/webDevelopment/NewtonSchool/loginResponsiveCV/resume/resume.html", "_self");
+				window.open("./resume/resume.html", "_self");
 			}
 			else if(localStorage.getItem(myUserName) === null){
 				document.getElementById("error-text").style.visibility= "visible"
