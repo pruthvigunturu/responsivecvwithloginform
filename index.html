@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Login form</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="d-flex justify-content-center rounded bg-light shadow-lg" style=" margin:80px; padding:30px; margin-bottom:140px ">
+			<form style="width:60%">
+				<div class="d-flex justify-content-center mt-4">
+					<h1>Login To Access Your Resume</h1>
+				</div>
+				
+				<small id="error-text" style="color:red; visibility:hidden">* We couldn't find an account that matches what you entered.</small>
+				
+				<div class="form-floating mt-4 mb-4">
+					<input class="form-control" type="text" id="username-input" placeholder="Username" onchange="loginDetails('username-input')" required>
+					<label class="form-label" for="username-input">Username</label>
+					<small class="form-text text-muted">We'll never share your details with anyone else.</small>
+				</div>
+				
+				<div class="form-floating mb-5">
+					<input class="form-control" type="password" placeholder="Password" onchange="loginDetails('password-input')" id="password-input" required>
+					<label class="form-label" for="password-input">Password</label>
+				</div>
+				
+				<div class="mb-4">
+				<button type="button" class="form-control bg-primary" onclick="logIn()">Log In</button>
+				</div>
+				
+				<div class="d-flex justify-content-center">
+				<p>Not a member? <span><a href="#register">Register</a></span></p>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+	
+	<!-- register form -->
+	<div class="container">
+		<div class="d-flex justify-content-center rounded bg-light shadow-lg" style=" margin:80px; padding:30px ">
+			<form style="width:60%">
+			
+			
+				<div class="d-flex justify-content-center mt-4">
+					<h1 id="register">Register</h1>
+				</div>
+				
+				
+				<div class="form-text"><p><span style="text-color:red">*</span>We'll never share your details with anyone else.</p></div>
+				<div class="form-floating mt-4 mb-3">
+					<input class="form-control" type="text" id="username" onchange="input('username')" placeholder="Username" required>
+					<label class="form-label" for="username">Username</label>
+				</div>
+				
+				
+				<div class="form-floating mb-3">
+					<input class="form-control" type="password" placeholder="Password" onchange="input('password')" id="password" required>
+					<label class="form-label" for="password">Password</label>
+				</div>
+				
+				
+				<div class="mb-5">
+				<button class="form-control bg-primary" type="button" onclick="buttonEve()" id="button">Confirm Sign Up</button>
+				</div>
+				
+				<p id = "pelem1">Username</p>
+				<p id = "pelem2">Password</p>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		var myUserName;
+		var myPassword;
+		function loginDetails(typep){
+			if(document.getElementById(typep).value != ""){
+				if(typep == "username-input"){
+					myUserName = document.getElementById("username-input").value;
+				}
+				if(typep == "password-input"){
+					myPassword = document.getElementById("password-input").value;
+				}
+			}
+		}
+		function logIn(){
+				if(!(localStorage.getItem(myUserName) === null) && localStorage.getItem(myUserName) == myPassword ){
+				window.open("file://E:/coding/webDevelopment/NewtonSchool/loginResponsiveCV/resume/resume.html", "_self");
+			}
+			else if(localStorage.getItem(myUserName) === null){
+				document.getElementById("error-text").style.visibility= "visible"
+			}
+			else{
+				document.getElementById("error-text").innerHTML= "The password that you've entered is incorrect."
+			}
+		}
+		
+		
+		function input(typep){
+			var username;
+			var password;
+			
+			if(document.getElementById(typep).value != ""){
+				if(localStorage.getItem(document.getElementById(typep).value) === null && typep == "username"){
+					username = document.getElementById("username").value;
+				}
+				else if(!(localStorage.getItem(document.getElementById(typep).value) === null)){
+					alert("This Username is already taken.")
+				}
+				
+				if(typep == "password")	
+					password = document.getElementById("password").value;
+			}			
+		}
+			
+			function buttonEve(){
+				localStorage.setItem(username.value, password.value);
+				document.getElementById("pelem1").innerHTML = username.value;
+				document.getElementById("pelem2").innerHTML = localStorage.getItem(username.value);
+			};
+	</script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
